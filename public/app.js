@@ -11,6 +11,8 @@ $.getJSON("/articles", function(data) {
       </div>
       <h4>${data[i].summary}</h4>
       <span>${data[i].link}</span>
+      <button>Note</button>
+      <button>Delete</button>
     </div>`
     $("#articles").append(html)
     
