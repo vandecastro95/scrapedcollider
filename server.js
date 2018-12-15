@@ -34,10 +34,10 @@ app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
 if (process.env.PORT) app.enable("view cache"); // Disable view cache for local testing
 
-mongoose.connect(
-  "mongodb://localhost/collider",
-  { useNewUrlParser: true }
-);
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
@@ -138,9 +138,8 @@ app.post("/articles/:id", function(req, res) {
 });
 
 app.get("/", function(req, res) {
-  
   res.render("./layouts/main", hbs);
-})
+});
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");

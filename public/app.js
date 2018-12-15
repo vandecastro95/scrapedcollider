@@ -4,15 +4,15 @@ $.getJSON("/articles", function(data) {
   for (var i = 0; i < data.length; i++) {
     let title = data[i].title.split("by");
     // Display the apropos information on the page
-    let html = `<div class="article" data-id=${data[i]._id}>
+    let html = `<div class="article" >
       <div>
         <h2>${title[0].trim()}</h2>
         <sub>${title[1]}</sub>
       </div>
       <h4>${data[i].summary}</h4>
       <span>${data[i].link}</span>
-      <button>Note</button>
-      <button>Delete</button>
+      </br></br>
+      <button class="noteArticle" data-id=${data[i]._id}>Note</button>
     </div>`
     $("#articles").append(html)
     
@@ -20,7 +20,7 @@ $.getJSON("/articles", function(data) {
 });
 
 // Whenever someone clicks a p tag
-$(document).on("click", ".article", function() {
+$(document).on("click", ".noteArticle", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
