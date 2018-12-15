@@ -32,6 +32,7 @@ app.use(express.static("public"));
 // Handlebars init
 app.engine(".hbs", hbs.engine);
 app.set("view engine", ".hbs");
+
 if (process.env.PORT) app.enable("view cache"); // Disable view cache for local testing
 
 var MONGODB_URI =
